@@ -54,7 +54,7 @@ var ASQ = window.ASQ = {
   RoleMixin : {
 
     // use a simple enum object
-    Roles: Object.freeze({
+    roles: Object.freeze({
       VIEWER: "viewer",
       PRESENTER: "presenter",
       TA: "ta"
@@ -90,7 +90,7 @@ var ASQ = window.ASQ = {
 
   asqify : function(p, isQuestionType){
     this.mixin2(p, this.RoleMixin);
-    Polymer.mixin(p, this.ElementTypeMixin);
+    this.mixin2(p, this.ElementTypeMixin);
 
     if(isQuestionType){
     p.isASQQuestionTypeElement = true;
