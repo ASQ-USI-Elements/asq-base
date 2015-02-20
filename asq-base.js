@@ -93,7 +93,7 @@ var ASQ = window.ASQ = {
     this.mixin2(p, this.ElementTypeMixin);
 
     if(isQuestionType){
-    p.isASQQuestionTypeElement = true;
+      p.isASQQuestionTypeElement = true;
     }
   }
 
