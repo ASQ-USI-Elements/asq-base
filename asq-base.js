@@ -1,6 +1,5 @@
 var ASQ = window.ASQ = {
 
-
   // From Polymer/core-focusable
   // @see https://github.com/Polymer/core-focusable.git
   mixin2 : function(prototype, mixin) {
@@ -39,20 +38,36 @@ var ASQ = window.ASQ = {
     return prototype;
   },
 
+  /**
+   *
+   * This mixin object is for every ASQ element type, including question types and others.
+   *
+   **/
   ElementTypeMixin : {
+
+    // True for every ASQ element.
     isASQElement : true,
+
+    // Denotes whether an ASQ element is a `question type`. 
     isASQQuestionTypeElement : false,
+
     mixinPublish: {
+      // 
       uid: {value: "", reflect: true},
     },
   },
 
+  /**
+   *
+   * This mixin object is `ONLY` for question types.
+   *
+   **/
   QuestionTypeMixin : {
     isASQQuestionTypeElement : true,
   },
 
-  RoleMixin : {
 
+  RoleMixin : {
     // use a simple enum object
     roles: Object.freeze({
       VIEWER: "viewer",
@@ -65,29 +80,51 @@ var ASQ = window.ASQ = {
       role: {value: "viewer", reflect: true}
     },
 
+    isValidRole: function(role) {
+      var roles = ASQ.RoleMixin.roles;
+      for (var r in roles) {
+        if (roles.hasOwnProperty(r)) {
+          if ( role == roles[r] ) {
+            return true;
+          }
+        }
+      }
+      return false;
+    },
+
+    setANF: function() {
+
+    },
+
     /**
-    * 
-    * 1. Validate the updation of role. If the new value
-    * is not a valid one, then roll back to the old value.
-    * 
-    * 2. If the role of `outside` element is 
-    * changed, then `inside` elements' role
-    * are also changed.
-    *
-    */
+     * 
+     * 1. Validate the updation of role. If the new value
+     * is not a valid one, then roll back to the old value.
+     * 
+     * 2. If the role of `outside` element is 
+     * changed, then `inside` elements' role
+     * are also changed.
+     *
+     **/
     roleChanged: function(old, newRole) {
-      if ( newRole === "viewer" || newRole === "presenter" || newRole === "ta" ) {
-        this.childNodes.array().filter(function(el) {
-          return el.isASQElement;
-        }).forEach(function(x) {
-          x.role = newRole;
-        });
+      if ( this.isValidRole(newRole) ) {
+        if ( old != newRole ) {
+          this.childNodes.array().filter(function(el) {
+            return el.isASQElement;
+          }).forEach(function(x) {
+            x.role = newRole;
+          });
+
+          // redo the $
+        }
       } else {
         this.role = old;
       }
     }
   },
 
+
+  // sugar function for mixin.
   asqify : function(p, isQuestionType){
     this.mixin2(p, this.RoleMixin);
     this.mixin2(p, this.ElementTypeMixin);
@@ -98,3 +135,4 @@ var ASQ = window.ASQ = {
   }
 
 };
+
