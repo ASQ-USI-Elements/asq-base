@@ -1,10 +1,10 @@
 {
   "name": "asq-base",
-  "version": "0.0.0",
-  "homepage": "https://github.com/ASQ-USI/asq-base",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ASQ-USI-Elements/asq-base",
   "authors": [
     "Vasileios Triglianos <triglian@gmail.com>",
-    "Zhenfei Nie <zhenfei.nie@gmail.com>"
+    "Zhenfei Nie <youyis2fox@gmail.com>"
   ],
   "description": "Basic functionality for ASQ elements.",
   "keywords": [
