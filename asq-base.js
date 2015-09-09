@@ -46,20 +46,25 @@ var questionTypeBehavior = ASQ.questionTypeBehavior = {
 
 
 var roleBehavior = ASQ.roleBehavior = {
-  // use a simple enum object
-  roles: Object.freeze({
-    VIEWER: "viewer",
-    PRESENTER: "presenter",
-    TA: "ta"
-  }),
-
   properties: {
     role: {
       type: String,
       value: "viewer",
       notify: true,
-      observer: "_roleChanged",
+      observer: "_roleChanged",  
       reflectToAttribute: true
+    },
+
+    roles:{
+      type: Object,
+      readOnly: true,
+      value: function(){
+        return {
+          VIEWER: "viewer",
+          PRESENTER: "presenter",
+          TA: "ta"
+        }
+      }
     }
   },
 
