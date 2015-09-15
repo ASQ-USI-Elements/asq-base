@@ -94,7 +94,7 @@ var roleBehavior = ASQ.roleBehavior = {
   _roleChanged: function(old, newRole) {
     if ( this._isValidRole(newRole) ) {
       if ( old != newRole ) {
-        this.childNodes.array().filter(function(el) {
+        Polymer.dom(this).childNodes.filter(function(el) {
           return el.isASQElement;
         }).forEach(function(x) {
           x.role = newRole;
