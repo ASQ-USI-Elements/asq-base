@@ -45,15 +45,9 @@ var questionTypeBehavior = ASQ.questionTypeBehavior = {
 };
 
 
+//order is important since _roleChanged depends on roles being set
 var roleBehavior = ASQ.roleBehavior = {
   properties: {
-    role: {
-      type: String,
-      value: "viewer",
-      notify: true,
-      observer: "_roleChanged",  
-      reflectToAttribute: true
-    },
 
     roles:{
       type: Object,
@@ -65,16 +59,23 @@ var roleBehavior = ASQ.roleBehavior = {
           TA: "ta"
         }
       }
+    },
+
+    role: {
+      type: String,
+      value: "viewer",
+      notify: true,
+      observer: "_roleChanged",  
+      reflectToAttribute: true
     }
   },
 
   _isValidRole: function(role) {
     var roles = this.roles;
-    for (var r in roles) {
-      if (roles.hasOwnProperty(r)) {
-        if ( role == roles[r] ) {
-          return true;
-        }
+    var keys = Object.keys(roles);
+    for (var i = 0, l = keys.length; i < l; i++) {
+      if ( role == roles[keys[i]] ) {
+        return true;
       }
     }
     return false;
