@@ -19,13 +19,6 @@ var elementTypeBehavior =  ASQ.elementTypeBehavior = {
       type: Boolean,
       value: false,
       notify: true
-    },
-
-    uid:{
-      type: String,
-      value: "",
-      notify: true,
-      reflectToAttribute: true
     }
   }
 };
@@ -40,7 +33,14 @@ var questionTypeBehavior = ASQ.questionTypeBehavior = {
       type: Boolean,
       value: true,
       notify: true
-    } 
+    },
+
+    uid:{
+      type: String,
+      value: "",
+      notify: true,
+      reflectToAttribute: true
+    }
   }
 };
 
@@ -92,7 +92,7 @@ var roleBehavior = ASQ.roleBehavior = {
    * are also changed.
    *
    **/
-  _roleChanged: function(old, newRole) {
+  _roleChanged: function(newRole, old) {
     if ( this._isValidRole(newRole) ) {
       if ( old != newRole ) {
         Polymer.dom(this).childNodes.filter(function(el) {
