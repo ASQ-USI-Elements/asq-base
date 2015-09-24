@@ -92,20 +92,26 @@ var roleBehavior = ASQ.roleBehavior = {
    * are also changed.
    *
    **/
-  _roleChanged: function(newRole, old) {
+  _roleChanged: function(newRole, oldRole) {
     if ( this._isValidRole(newRole) ) {
-      if ( old != newRole ) {
-        Polymer.dom(this).childNodes.filter(function(el) {
-          return el.isASQElement;
-        }).forEach(function(x) {
-          x.role = newRole;
-        });
-
-        // redo the $
-      }
+      this._propagateRole(newRole);
     } else {
-      this.role = old;
+      this.role = oldRole;
     }
+  },
+
+  _propagateRole: function(role) {
+    if ( ! this._isValidRole(role) ) return;
+
+    if ( this.role !== role ) this.role = role;
+
+    var asqElements = Polymer.dom(this).children.filter(function(el) {
+      return el.isASQElement;
+    });
+
+    asqElements.forEach(function(x) {
+      x.role = role;
+    });
   }
 };
 
