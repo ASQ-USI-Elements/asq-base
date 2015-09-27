@@ -70,6 +70,10 @@ var roleBehavior = ASQ.roleBehavior = {
     }
   },
 
+  hasRole: function (role, candidate) {
+    return role == candidate;
+  },
+
   _isValidRole: function(role) {
     var roles = this.roles;
     var keys = Object.keys(roles);
