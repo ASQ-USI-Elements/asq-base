@@ -100,7 +100,7 @@ var roleBehavior = ASQ.roleBehavior = {
     if ( this._isValidRole(newRole) ) {
       this._propagateRole(newRole);
     } else {
-      this.role = oldRole || this.Roles.VIEWER;
+      this.role = oldRole || this.roles.VIEWER;
     }
   },
 
