@@ -3,7 +3,7 @@ var ASQ = window.ASQ || {};
 /**
  *
  * This mixin object is for every ASQ element type, including question types and others.
- *
+ * @polymerBehavior
  */
 var elementTypeBehavior =  ASQ.elementTypeBehavior = {
   properties : {
@@ -32,7 +32,7 @@ var elementTypeBehavior =  ASQ.elementTypeBehavior = {
 
 /**
  * This mixin object is `ONLY` for question types.
- *
+ * @polymerBehavior
  */
 var questionTypeBehavior = ASQ.questionTypeBehavior = {
   properties : {
@@ -45,7 +45,10 @@ var questionTypeBehavior = ASQ.questionTypeBehavior = {
 };
 
 
-//order is important since _roleChanged depends on roles being set
+/**
+ * Order is important since _roleChanged depends on roles being set
+ * @polymerBehavior
+ */
 var roleBehavior = ASQ.roleBehavior = {
   properties: {
 
@@ -119,5 +122,12 @@ var roleBehavior = ASQ.roleBehavior = {
   }
 };
 
+/**
+ * @polymerBehavior
+ */
 ASQ.asqElementBehavior = [elementTypeBehavior, roleBehavior];
+
+/**
+ * @polymerBehavior
+ */
 ASQ.asqQuestionElementBehavior = [elementTypeBehavior, questionTypeBehavior, roleBehavior];
