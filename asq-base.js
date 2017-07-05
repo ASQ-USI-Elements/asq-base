@@ -1,7 +1,6 @@
 var ASQ = window.ASQ || {};
 
 /**
- *
  * This mixin object is for every ASQ element type, including question types and others.
  * @polymerBehavior
  */
@@ -122,12 +121,8 @@ var roleBehavior = ASQ.roleBehavior = {
   }
 };
 
-/**
- * @polymerBehavior
- */
+ /** @polymerBehavior ASQ.asqElementBehavior */
 ASQ.asqElementBehavior = [elementTypeBehavior, roleBehavior];
 
-/**
- * @polymerBehavior
- */
+ /** @polymerBehavior ASQ.asqQuestionElementBehavior */
 ASQ.asqQuestionElementBehavior = [elementTypeBehavior, questionTypeBehavior, roleBehavior];
